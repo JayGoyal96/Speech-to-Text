@@ -21,14 +21,6 @@ try {
   renderNotes(notes);
   
   
-  
-  /*-----------------------------
-        Voice Recognition 
-  ------------------------------*/
-  
-  // If false, the recording will stop after a few seconds of silence.
-  // When true, the silence period is longer (about 15 seconds),
-  // allowing us to keep recording even when the user pauses. 
   recognition.continuous = true;
   
   // This block is called every time the Speech APi captures a line. 
@@ -41,8 +33,6 @@ try {
   
     // Get a transcript of what was said.
     var transcript = event.results[current][0].transcript;
-  
-    
   
     // Add the current transcript to the contents of our Note.
     // There is a weird bug on mobile, where everything is repeated twice.
@@ -69,11 +59,6 @@ try {
     };
   }
   
-  
-  
-  /*-----------------------------
-        App buttons and input 
-  ------------------------------*/
   
   $('#start-record-btn').on('click', function(e) {
     if (noteContent.length) {
@@ -133,11 +118,7 @@ try {
   });
   
   
-  
-  /*-----------------------------
-        Speech Synthesis 
-  ------------------------------*/
-  
+
   function readOutLoud(message) {
       var speech = new SpeechSynthesisUtterance();
   
@@ -150,11 +131,6 @@ try {
       window.speechSynthesis.speak(speech);
   }
   
-  
-  
-  /*-----------------------------
-        Helper Functions 
-  ------------------------------*/
   
   function renderNotes(notes) {
     var html = '';
@@ -187,8 +163,6 @@ try {
     var key;
     for (var i = 0; i < localStorage.length; i++) {
       key = localStorage.key(i);
-      console.log(i)
-      console.log(key)
   
       if(key.substring(0,5) == 'note-') {
         notes.push({
@@ -197,7 +171,6 @@ try {
         });
       } 
     }
-    console.log(notes)
     return notes;
   }
   
